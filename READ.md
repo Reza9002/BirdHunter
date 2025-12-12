@@ -1,10 +1,10 @@
-# 🦅 Sky Hunter - Vanilla JS Edition
+# 🦅 Bird Hunter - Vanilla JS Edition
 
 Ein pfeilschnelles Arcade-Game, gebaut mit reinem **Vanilla JavaScript** und **HTML5 Canvas**.
 
 Kein React. Kein TypeScript. Kein komplexer Build-Prozess. Einfach nur Code.
 
-![Sky Hunter](https://via.placeholder.com/800x600?text=Sky+Hunter+Preview)
+![Bird Hunter](https://via.placeholder.com/800x600?text=Sky+Hunter+Preview)
 
 ## 🎮 Anleitung
 
