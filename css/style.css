@@ -1,0 +1,50 @@
+/* Basis Reset ist durch Tailwind abgedeckt, hier spezifische Dinge */
+
+body {
+    margin: 0;
+    overflow: hidden; /* Verhindert Scrollbars während des Spiels */
+}
+
+/* Fadenkreuz Cursor */
+.cursor-crosshair {
+    cursor: crosshair;
+}
+
+/* Hilfsklasse zum Verstecken von Elementen */
+.hidden {
+    display: none !important;
+}
+
+/* Animation NUR für Opazität, damit die Größe sich NIEMALS ändert */
+@keyframes pulse-opacity-only {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* --- Herz Klassen --- */
+
+/* Basis Klasse für Konsistenz (Größe/Position) */
+.heart-base {
+    display: inline-block;
+    transition: color 0.3s ease;
+    /* Wichtig: Keine Transform oder Font-Size Änderungen hier */
+}
+
+/* Standard: Weiss (wie dein Code-Beispiel) */
+.heart-white {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Letztes Leben: Rot (nur Opazität pulsiert) */
+.heart-red {
+    color: #ef4444; 
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.9);
+    animation: pulse-opacity-only 1s infinite;
+}
+
+/* Tot: Dunkelgrau */
+.heart-dead {
+    color: white;
+    text-shadow: none;
+}
