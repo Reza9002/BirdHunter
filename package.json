@@ -2,9 +2,11 @@
   "name": "bird-hunter-vanilla",
   "version": "1.0.0",
   "description": "Vanilla JS Game",
-  "main": "js/app.js",
+  "main": "index.html",
   "scripts": {
-    "start": "serve"
+    "start": "serve ."
   },
-  "dependencies": {}
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
 }
