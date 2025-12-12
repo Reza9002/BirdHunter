@@ -12,12 +12,11 @@
 <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.1",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.1/",
-    "react/": "https://esm.sh/react@^19.2.1/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
     "lucide-react": "https://esm.sh/lucide-react@^0.560.0",
-    "vite": "https://esm.sh/vite@^7.2.7",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+    "vite": "https://esm.sh/vite@^7.2.7"
   }
 }
 </script>
@@ -61,7 +60,6 @@
         <div class="flex-1 w-full flex items-center justify-center min-h-0">
             
             <!-- Das Canvas Container: Maintain Aspect Ratio, Max Height/Width -->
-            <!-- Wir nutzen CSS aspect-ratio und lassen Height/Width dynamisch anpassen -->
             <div class="relative aspect-[4/3] h-full max-h-full w-auto max-w-full bg-black rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-700">
                 
                 <!-- Canvas -->
@@ -97,7 +95,7 @@
             </div>
         </div>
 
-        <!-- Footer Text: IMMER SICHTBAR, passt sich an -->
+        <!-- Footer Text -->
         <p class="flex-none text-slate-500 text-xs sm:text-sm text-center">
             Klicke um zu schießen. Jeder entkommene Vogel kostet ein Leben.<br>
             Tech Stack: Vanilla JS, HTML5 Canvas, DOM Manipulation.
