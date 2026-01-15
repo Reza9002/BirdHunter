@@ -1,50 +1,247 @@
-/* Basis Reset ist durch Tailwind abgedeckt, hier spezifische Dinge */
-
+/* --- Basis Reset --- */
 body {
     margin: 0;
-    overflow: hidden; /* Verhindert Scrollbars während des Spiels */
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #1e293b; /* dunkelblau */
+    color: white;
 }
 
-/* Fadenkreuz Cursor */
-.cursor-crosshair {
-    cursor: crosshair;
-}
-
-/* Hilfsklasse zum Verstecken von Elementen */
 .hidden {
     display: none !important;
 }
 
-/* Animation NUR für Opazität, damit die Größe sich NIEMALS ändert */
+.cursor-crosshair {
+    cursor: crosshair;
+}
+
+/* --- Container --- */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 8px;
+    gap: 8px;
+}
+
+/* --- HUD --- */
+.hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #334155; /* slate-800 */
+    padding: 12px;
+    border-radius: 16px;
+    border: 2px solid #475569; /* slate-700 */
+}
+
+.lives-wrapper, .title-score, .highscore-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lives {
+    display: flex;
+    gap: 4px;
+    font-size: 1.5rem;
+}
+
+.label {
+    font-size: 0.75rem;
+    color: #94a3b8; /* slate-400 */
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+}
+
+.game-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.score-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.score {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.highscore {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #facc15; /* yellow-400 */
+}
+
+/* --- Spielbereich --- */
+.game-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.canvas-wrapper {
+    position: relative;
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    aspect-ratio: 4/3;
+    background-color: black;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 4px solid #475569;
+}
+
+.game-canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: crosshair;
+}
+
+/* --- Screens --- */
+.screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    z-index: 30;
+}
+
+.screen-menu {
+    background-color: rgba(0,0,0,0.7);
+    text-align: center;
+}
+
+.screen-menu h2 {
+    font-size: 3rem;
+    margin-bottom: 8px;
+}
+
+.screen-menu p {
+    font-size: 1rem;
+    margin-bottom: 16px;
+}
+
+.screen-menu button {
+    padding: 12px 24px;
+    background-color: #2563eb; /* blue-600 */
+    border: none;
+    border-radius: 9999px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.screen-menu button:hover {
+    background-color: #3b82f6; /* blue-500 */
+}
+
+/* Game Over */
+.screen-gameover {
+    background-color: rgba(220,38,38,0.6); /* red-900 / 60% */
+    text-align: center;
+}
+
+.final-score-wrapper {
+    background-color: #1e293b;
+    padding: 12px;
+    border-radius: 16px;
+    border: 2px solid #475569;
+    margin-bottom: 16px;
+}
+
+.final-score-wrapper p:last-child {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Buttons Wrapper */
+.buttons-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.buttons-wrapper button {
+    padding: 12px 24px;
+    border-radius: 9999px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btn-restart {
+    background-color: white;
+    color: #1e293b;
+    border: none;
+}
+
+#btn-restart:hover {
+    background-color: #e2e8f0;
+}
+
+#btn-menu {
+    background-color: transparent;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: white;
+}
+
+#btn-menu:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* --- Footer --- */
+.footer-text {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-align: center;
+    margin-top: 8px;
+}
+
+/* --- Herz Animation --- */
 @keyframes pulse-opacity-only {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.6; }
 }
 
-/* --- Herz Klassen --- */
-
-/* Basis Klasse für Konsistenz (Größe/Position) */
 .heart-base {
     display: inline-block;
     transition: color 0.3s ease;
-    /* Wichtig: Keine Transform oder Font-Size Änderungen hier */
 }
 
-/* Standard: Weiss (wie dein Code-Beispiel) */
 .heart-white {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
-/* Letztes Leben: Rot (nur Opazität pulsiert) */
 .heart-red {
-    color: #ef4444; 
+    color: #ef4444;
     text-shadow: 0 0 10px rgba(239, 68, 68, 0.9);
     animation: pulse-opacity-only 1s infinite;
 }
 
-/* Tot: Dunkelgrau */
 .heart-dead {
-    color: white;
+    color: #94a3b8; /* slate-400 */
     text-shadow: none;
 }

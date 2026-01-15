@@ -1,33 +1,30 @@
-# 🦅 Bird Hunter - Vanilla JS Edition
+# Sky Hunter
 
-Ein pfeilschnelles Arcade-Game, gebaut mit reinem **Vanilla JavaScript** und **HTML5 Canvas**.
+**Sky Hunter** ist ein klassisches Browser-Spiel, das komplett in **Vanilla JavaScript**, **HTML5 Canvas** und **CSS** umgesetzt wurde. Spieler müssen die fliegenden Vögel treffen, bevor sie entkommen. Jeder entkommene Vogel kostet ein Leben – das Spiel endet, wenn alle Leben verloren sind.
 
-Kein React. Kein TypeScript. Kein komplexer Build-Prozess. Einfach nur Code.
+---
 
-![Bird Hunter](https://via.placeholder.com/800x600?text=Sky+Hunter+Preview)
 
-## 🎮 Anleitung
+## **Features**
 
-1. **Jagen:** Klicke die Vögel an, bevor sie den Bildschirm verlassen.
-2. **Überleben:** Jeder Vogel, der den rechten Rand erreicht, kostet ein Leben.
-3. **Highscore:** Versuche deinen eigenen Rekord zu brechen!
+- Vollständig **Vanilla JS** ohne Frameworks.
+- Dynamisches **State Management** (Score, Highscore, Leben, Game State).
+- **Canvas Rendering** für flüssige Animationen.
+- Start- und Game-Over-Menüs mit interaktiven Buttons.
+- Herz-Animationen für Leben.
+- Einfach anpassbare **Vogelgröße** und **Geschwindigkeit**.
 
-## 🛠 Technik
+---
 
-*   **HTML5 Canvas:** Für das Rendering der Vögel und Partikel.
-*   **Vanilla JS:** Komplette Spielelogik in `js/app.js`.
-*   **Tailwind CSS (CDN):** Für das Styling des Interfaces, ohne npm-Installation nutzbar.
+## **Tech Stack / Technologien**
 
-## 🚀 Deployment (Vercel)
+- **JavaScript (Vanilla JS)** – Spiel-Logik & Animation
+- **HTML5 Canvas** – Grafische Darstellung der Vögel und Partikel
+- **CSS3** – Layout, Animationen und Menüs
 
-Dieses Projekt ist bereit für Vercel. Da es keine Build-Steps gibt (es ist nur HTML/JS), ist das Deployment extrem einfach:
+---
 
-1. Push diesen Code auf **GitHub**.
-2. Erstelle ein neues Projekt in **Vercel**.
-3. Importiere das Repository.
-4. **Wichtig:** Da es keine Build-Scripts gibt, lass die "Build Command" Einstellungen einfach leer. Vercel erkennt automatisch, dass es eine statische Seite ist.
-5. Klicke **Deploy**.
+## **Installation & Nutzung**
 
-## 💻 Lokal Starten
+Repository klonen
 
-Einfach die `index.html` im Browser öffnen oder einen einfachen Server nutzen (z.B. Live Server in VS Code).

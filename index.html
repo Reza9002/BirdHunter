@@ -4,99 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sky Hunter - DOM & Canvas</title>
-    <!-- Tailwind CSS für schnelles, modernes Design -->
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Eigenes CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="favicon.ico">
     <script src="js/app.js" defer></script>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.560.0",
-    "vite": "https://esm.sh/vite@^7.2.7"
-  }
-}
-</script>
 </head>
-<body class="bg-slate-900 text-white select-none overflow-hidden h-screen w-screen">
+<body>
 
-    <!-- Haupt-Container: Nimmt volle Höhe, verhindert Scrollen -->
-    <div class="h-full w-full flex flex-col items-center justify-center p-2 sm:p-4 gap-2 sm:gap-4">
+    <!-- Haupt-Container -->
+    <div class="container">
 
-        <!-- Header / HUD (Heads Up Display) -->
-        <div class="flex-none w-full max-w-5xl flex justify-between items-center bg-slate-800 p-2 sm:p-4 rounded-xl shadow-lg border border-slate-700 z-20">
-            
+        <!-- Header / HUD -->
+        <div class="hud">
+
             <!-- Leben -->
-            <div class="flex items-center gap-2">
-                <div id="lives-container" class="flex gap-1 text-red-500 text-xl sm:text-2xl">
-                    <!-- Herzen werden per JS eingefügt -->
+            <div class="lives-wrapper">
+                <div id="lives-container" class="lives">
                     ❤❤❤❤❤
                 </div>
-                <p class="text-xs text-slate-400 uppercase font-bold tracking-wider ml-2 hidden sm:block">Leben</p>
+                <p class="label">Leben</p>
             </div>
 
             <!-- Titel & Score -->
-            <div class="flex flex-col items-center">
-                <h1 class="hidden md:block text-xl sm:text-2xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-                    SKY HUNTER
-                </h1>
-                <div class="flex items-center gap-2 mt-1">
-                    <span class="text-blue-400 text-sm sm:text-base">Target:</span>
-                    <span id="score-display" class="font-mono text-lg sm:text-xl font-bold">0</span>
+            <div class="title-score">
+                <h1 class="game-title">SKY HUNTER</h1>
+                <div class="score-wrapper">
+                    <span>Target:</span>
+                    <span id="score-display" class="score">0</span>
                 </div>
             </div>
 
             <!-- High Score -->
-            <div class="text-right">
-                <p class="text-xs text-slate-400 uppercase font-bold tracking-wider">High Score</p>
-                <p id="highscore-display" class="text-xl sm:text-2xl font-bold font-mono text-yellow-400">0</p>
+            <div class="highscore-wrapper">
+                <p class="label">High Score</p>
+                <p id="highscore-display" class="highscore">0</p>
             </div>
         </div>
 
-        <!-- Spielbereich Wrapper: Flex-1 erlaubt Wachsen/Schrumpfen -->
-        <div class="flex-1 w-full flex items-center justify-center min-h-0">
-            
-            <!-- Das Canvas Container: Maintain Aspect Ratio, Max Height/Width -->
-            <div class="relative aspect-[4/3] h-full max-h-full w-auto max-w-full bg-black rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-700">
-                
+        <!-- Spielbereich -->
+        <div class="game-area">
+
+            <!-- Canvas Wrapper -->
+            <div class="canvas-wrapper">
+
                 <!-- Canvas -->
-                <canvas id="canvas" width="800" height="600" class="w-full h-full object-contain cursor-crosshair bg-slate-800 touch-none"></canvas>
+                <canvas id="canvas" width="800" height="600" class="game-canvas"></canvas>
 
-                <!-- Screen: Start Menu -->
-                <div id="screen-menu" class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center backdrop-blur-sm z-30">
-                    <h2 class="text-4xl sm:text-6xl font-black text-white mb-2 tracking-tighter text-center">BEREIT?</h2>
-                    <p class="text-slate-300 mb-8 text-sm sm:text-lg text-center px-4">Verhindere, dass die Vögel entkommen!</p>
-                    <button id="btn-start" class="px-6 py-3 sm:px-8 sm:py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(37,99,235,0.5)] text-sm sm:text-base">
-                        JAGD STARTEN
-                    </button>
+                <!-- Start Menu -->
+                <div id="screen-menu" class="screen screen-menu">
+                    <h2>BEREIT?</h2>
+                    <p>Verhindere, dass die Vögel entkommen!</p>
+                    <button id="btn-start">JAGD STARTEN</button>
                 </div>
 
-                <!-- Screen: Game Over -->
-                <div id="screen-gameover" class="hidden absolute inset-0 bg-red-900/90 flex flex-col items-center justify-center backdrop-blur-sm z-30">
-                    <h2 class="text-4xl sm:text-6xl font-black text-white mb-4">GAME OVER</h2>
-                    <div class="bg-slate-900 p-4 sm:p-6 rounded-xl border border-slate-700 mb-6 sm:mb-8 text-center min-w-[150px] sm:min-w-[200px]">
-                        <p class="text-slate-400 text-xs sm:text-sm uppercase">Dein Score</p>
-                        <p id="final-score" class="text-3xl sm:text-5xl font-mono font-bold text-white mb-2">0</p>
+                <!-- Game Over -->
+                <div id="screen-gameover" class="screen screen-gameover hidden">
+                    <h2>GAME OVER</h2>
+                    <div class="final-score-wrapper">
+                        <p>Dein Score</p>
+                        <p id="final-score">0</p>
                     </div>
-                    
-                    <div class="flex flex-col sm:flex-row gap-2 sm:gap-4">
-                        <button id="btn-restart" class="px-6 py-3 sm:px-8 sm:py-4 bg-white text-slate-900 hover:bg-slate-200 font-bold rounded-full transition-all transform hover:scale-105 text-sm sm:text-base">
-                            Nochmal Spielen
-                        </button>
-                        <button id="btn-menu" class="px-6 py-3 sm:px-8 sm:py-4 bg-transparent border-2 border-white/20 hover:bg-white/10 text-white font-bold rounded-full transition-all text-sm sm:text-base">
-                            Hauptmenü
-                        </button>
+                    <div class="buttons-wrapper">
+                        <button id="btn-restart">Nochmal Spielen</button>
+                        <button id="btn-menu">Hauptmenü</button>
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <!-- Footer Text -->
-        <p class="flex-none text-slate-500 text-xs sm:text-sm text-center">
+        <!-- Footer -->
+        <p class="footer-text">
             Klicke um zu schießen. Jeder entkommene Vogel kostet ein Leben.<br>
             Tech Stack: Vanilla JS, HTML5 Canvas, DOM Manipulation.
         </p>
